@@ -1,0 +1,22 @@
+< THE SYMBOL TABLE >  Q2-Full Segment-Definition.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STSEG                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DTSEG                    	00004     	-5        	SEGMENT   	(ITSELF)  
+MYDATA                   	00000     	1         	VAR       	DTSEG     
+SUM                      	0000A     	2         	VAR       	DTSEG     
+AVG                      	0000C     	1         	VAR       	DTSEG     
+MAX                      	0000D     	1         	VAR       	DTSEG     
+MIN                      	0000E     	1         	VAR       	DTSEG     
+CDSEG                    	00005     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	FAR       	CDSEG     
+LOP                      	0000D     	-1        	LABEL     	CDSEG     
+MAX_NUM                  	0001A     	-1        	LABEL     	CDSEG     
+MIN_NUM                  	00023     	-1        	LABEL     	CDSEG     
+ADD_NUM                  	0002C     	-1        	LABEL     	CDSEG     
+AVG_ARR                  	00033     	-1        	LABEL     	CDSEG     
+===================================================================================================
+[ 11/25/2021  --  9:33:38 PM ] 
+< END >
+ 

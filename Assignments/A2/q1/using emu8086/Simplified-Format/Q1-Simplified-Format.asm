@@ -1,0 +1,27 @@
+
+;Q1 using SIMPLIFIED SEGMENT DEFINITION  
+      
+.MODEL  SMALL
+.STACK  64
+;--------------------------------------------------
+.DATA
+DATA1   DB 90H       ;number 1
+DATA2   DB 12H       ;number 2
+MULT    DW 0         ;multiplication of two numbers will be stored in MULT
+;--------------------------------------------------
+      .CODE
+MAIN    PROC FAR     ;program entry point
+        MOV AX,@DATA ;load the data segment address
+        MOV DS,AX    ;assign value to DS 
+         
+        MOV AH, 0
+        MOV AL,DATA1 
+        MOV BL,DATA2 
+LOP:    ADD MULT, AX
+        DEC BL       ;decrement BL and update the flag register ZF
+        JNZ LOP  
+        
+        MOV AH,4CH   ;set up to
+        INT 21H      ;return to the OS 
+MAIN    ENDP
+        END MAIN     ;program exit point

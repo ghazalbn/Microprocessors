@@ -1,0 +1,114 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+Q2-Full Segment-Definition.exe -- emu8086 assembler version: 4.08  
+ 
+[ 11/25/2021  --  9:33:38 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       
+[   2]        :                                       ;Q2 using FULL SEGMENT DEFINITION
+[   3]        :                                       
+[   4]        :                                       STSEG   SEGMENT
+[   5]    0000: 00 00 00 00 00 00 00 00 00 00 00 00   DB 64   DUP (?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00                         
+[   6]        :                                       STSEG   ENDS
+[   7]        :                                       ;--------------------------------------------------
+[   8]        :                                       DTSEG   SEGMENT
+[   9]    0040: 0A 14 5F 16 19 46 58 3D 2C 5D         MYDATA  DB 10,20,95,22,25,70,88,61,44,93 ;my array of 10 numbers
+[  10]    004A: 00 00                                 SUM     DW 0
+[  11]    004C: 00                                    AVG     DB ?
+[  12]    004D: 00                                    MAX     DB ?
+[  13]    004E: 00                                    MIN     DB ?
+[  14]        :                                       DTSEG   ENDS
+[  15]        :                                       ;--------------------------------------------------
+[  16]        :                                       CDSEG   SEGMENT
+[  17]    0050:                                       MAIN    PROC FAR        ;program entry point
+[  18]        :                                       ASSUME CS:CDSEG,DS:DTSEG,SS:STSEG
+[  19]    0050: B8 04 00                              MOV AX,DTSEG    ;load the data segment address
+[  20]    0053: 8E D8                                 MOV DS, AX
+[  21]        :                                       
+[  22]    0055: B9 0A 00                              MOV CX, 10
+[  23]    0058: BE 00 00                              MOV SI, 0
+[  24]    005B: B4 00                                 MOV AH, 0
+[  25]        :                                       
+[  26]    005D: 8A 04                                 LOP:    MOV AL, MYDATA[SI]
+[  27]    005F: 83 FE 00                              CMP SI, 0
+[  28]    0062: 75 06                                 JNE MAX_NUM
+[  29]    0064: A2 0D 00                              MOV MAX, AL
+[  30]    0067: A2 0E 00                              MOV MIN, AL
+[  31]        :                                       
+[  32]    006A: 38 06 0D 00                           MAX_NUM:CMP MAX, AL     ;update max
+[  33]    006E: 73 03                                 JAE MIN_NUM
+[  34]    0070: A2 0D 00                              MOV MAX, AL
+[  35]        :                                       
+[  36]    0073: 38 06 0E 00                           MIN_NUM:CMP MIN, AL     ;update min
+[  37]    0077: 76 03                                 JBE ADD_NUM
+[  38]    0079: A2 0E 00                              MOV MIN, AL
+[  39]        :                                       
+[  40]    007C: 01 06 0A 00                           ADD_NUM:ADD SUM, AX
+[  41]    0080: 46                                    INC SI
+[  42]    0081: E2 DA                                 LOOP LOP        ;dec CX and JNZ
+[  43]        :                                       
+[  44]    0083: A1 0A 00                              AVG_ARR:MOV AX, SUM
+[  45]    0086: F7 F6                                 DIV SI          ;div SUM by 10 to calculate avg of array
+[  46]    0088: A2 0C 00                              MOV AVG, AL
+[  47]        :                                       
+[  48]    008B: B4 4C                                 MOV AH,4CH      ;set up to
+[  49]    008D: CD 21                                 INT 21H         ;return to the DOS
+[  50]        :                                       MAIN    ENDP
+[  51]        :                                       CDSEG   ENDS
+[  52]        :                                       END MAIN        ;program exit point
+[  53]        :                                       
+[  54]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 8F      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: A6      -   check sum (l.byte)
+0013: 4F      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 05      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 05      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================
