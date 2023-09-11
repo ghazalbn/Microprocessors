@@ -1,0 +1,94 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+Q1-Full Segment-Definition.exe -- emu8086 assembler version: 4.08  
+ 
+[ 11/25/2021  --  9:32:56 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       
+[   2]        :                                       ;Q1 using FULL SEGMENT DEFINITION
+[   3]        :                                       
+[   4]        :                                       STSEG   SEGMENT
+[   5]    0000: 00 00 00 00 00 00 00 00 00 00 00 00   DB 64   DUP (?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00                         
+[   6]        :                                       STSEG   ENDS
+[   7]        :                                       ;--------------------------------------------------
+[   8]        :                                       DTSEG   SEGMENT
+[   9]    0040: 90                                    DATA1   DB 90H          ;number 1
+[  10]    0041: 12                                    DATA2   DB 12H          ;number 2
+[  11]    0042: 00 00                                 MULT    DW 0            ;multiplication of two numbers will be stored in MULT
+[  12]        :                                       DTSEG   ENDS
+[  13]        :                                       ;--------------------------------------------------
+[  14]        :                                       CDSEG   SEGMENT
+[  15]    0050:                                       MAIN    PROC FAR        ;program entry point
+[  16]        :                                       ASSUME CS:CDSEG,DS:DTSEG,SS:STSEG
+[  17]    0050: B8 04 00                              MOV AX,DTSEG    ;load the data segment address
+[  18]    0053: 8E D8                                 MOV DS, AX
+[  19]        :                                       
+[  20]    0055: B4 00                                 MOV AH, 0
+[  21]    0057: A0 00 00                              MOV AL,DATA1
+[  22]    005A: 8A 1E 01 00                           MOV BL,DATA2
+[  23]        :                                       
+[  24]    005E: 01 06 02 00                           LOP:    ADD MULT, AX
+[  25]    0062: FE CB                                 DEC BL          ;decrement BL and update the flag register ZF
+[  26]    0064: 75 F8                                 JNZ LOP
+[  27]        :                                       
+[  28]    0066: B4 4C                                 MOV AH,4CH      ;set up to
+[  29]    0068: CD 21                                 INT 21H         ;return to the DOS
+[  30]        :                                       MAIN    ENDP
+[  31]        :                                       CDSEG   ENDS
+[  32]        :                                       END MAIN        ;program exit point
+[  33]        :                                       
+[  34]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 6A      -   bytes on last page (l.byte)
+0003: 00      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 00      -   SP - stack pointer (h.byte)
+0012: 5A      -   check sum (l.byte)
+0013: 53      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 05      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 05      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

@@ -1,0 +1,22 @@
+< THE SYMBOL TABLE >  Q2-Simplified-Format.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00004     	-5        	SEGMENT   	(ITSELF)  
+MYDATA                   	00000     	1         	VAR       	data      
+SUM                      	0000A     	2         	VAR       	data      
+AVG                      	0000C     	1         	VAR       	data      
+MAX                      	0000D     	1         	VAR       	data      
+MIN                      	0000E     	1         	VAR       	data      
+CODE                     	00005     	-5        	SEGMENT   	(ITSELF)  
+MAIN                     	00000     	-1        	FAR       	code      
+LOP                      	0000D     	-1        	LABEL     	code      
+MAX_NUM                  	0001A     	-1        	LABEL     	code      
+MIN_NUM                  	00023     	-1        	LABEL     	code      
+ADD_NUM                  	0002C     	-1        	LABEL     	code      
+AVG_ARR                  	00033     	-1        	LABEL     	code      
+===================================================================================================
+[ 11/25/2021  --  9:34:04 PM ] 
+< END >
+ 

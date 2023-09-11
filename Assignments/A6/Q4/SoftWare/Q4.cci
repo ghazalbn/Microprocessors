@@ -1,0 +1,12 @@
+VERSION:3 SOURCE_TIMESTAMP:543B381D
+NODE:I LEVEL:0 LINE:1 "C:\cvavr\inc\mega32.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr\inc\delay.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavr\inc\stdint.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavr\inc\alcd.h"
+NODE:M LEVEL:0 LINE:6 "DHT11_PIN"
+NODE:V LEVEL:0 LINE:7 "c -> R5"
+NODE:V LEVEL:0 LINE:7 "H -> R4"
+NODE:F LEVEL:0 LINE:10 "int_to_char(int x)"
+NODE:F LEVEL:0 LINE:15 "put_on_lcd(int value,int c)"
+NODE:F LEVEL:0 LINE:27 "read_h(void)"
+NODE:F LEVEL:0 LINE:42 "main(void)"
